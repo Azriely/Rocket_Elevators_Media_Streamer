@@ -61,11 +61,17 @@
 											CONTACT
 										</a>
 									</li>
-									<li><!-- Interventions -->
-										<a href="interventions.html">
+		
+
+									<% if user_signed_in? %>
+										<li><!-- Interventions -->
+											<a href="interventions">
 											INTERVENTIONS
-										</a>
-									</li>
+											</a>
+										</li>
+									<% else %>
+										<li><%= link_to 'SIGN IN', new_user_session_path%>
+									<% end %></li>
 
 									<% if user_signed_in? %>
 										<li><%= link_to 'BACK OFFICE', rails_admin_path %></li>
