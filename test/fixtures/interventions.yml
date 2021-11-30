@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  user: one
+  customer: one
+  building: one
+  battery: one
+  column: one
+  elevator: one
+  employee: one
+
+two:
+  name: MyString
+  user: two
+  customer: two
+  building: two
+  battery: two
+  column: two
+  elevator: two
+  employee: two
