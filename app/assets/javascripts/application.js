@@ -34,3 +34,4 @@
 
 //= require smoothscroll
 //= require_tree .
+//= require intervention

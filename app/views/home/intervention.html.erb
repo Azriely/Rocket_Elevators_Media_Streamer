@@ -1,30 +1,83 @@
-<!-- Request Form -->
-<section id="requestForm">
-    <div class="container">
+<%= form_with(model: @intervention, local: true) do |form| %>
 
-        <header class="text-center mb-60">
-            <h2>Request a quote</h2>
-            <p class="lead font-lato">Rocket Elevator at your service 24h , 7 days a week.</p>
-            <hr />
-        </header>
+<section id="intervention">
+<div class="container">
 
+    <header class="text-center">
+        <h2>INTERVENTION</h2>
+        <p class="lead">Select customer information to submit an intervention</p>
+        <hr />
+    </header>
 
-        <div class="row">
+    <div class="building-class" style="">
 
-            <!-- FORM -->
-            <div class="col-md-8 col-sm-8">
-
-                <h3>Let us know more about your project below:<strong></strong></h3>
-
-                <%= render 'form' %>
-
-            </div>
-            <!-- /FORM -->
-
-        
-
+        <div class="field" style="display: none;">
+            <%= form.label :Author %>
+            <%= form.text_field :author, value:current_user.employee.id %>
         </div>
 
+        <div class="form-group">
+            <%= form.label :Client %>
+            <%= form.select(:customer, Customer.all.collect {|p| [p.company_name, p.id ]}, {prompt: "Customer"}, {class: 'form-control'}) %>
+        </div>
+
+        <div class="form-group" id="buildingSelect">
+            <%= form.label :Building %>
+            <%= form.select(:building, Building.all.collect {|t| [t.id, t.customer_id ]}, {prompt: "id"}, {class: 'form-control'}) %>
+        </div>
+
+        <div class="form-group" id="batterySelect">
+            <%= form.label :Battery %>
+            <%= form.select(:battery, Battery.all.collect {|b| [b.id, b.building_id ]}, {prompt: "id"}, {class: 'form-control'}) %>
+        </div>
+
+        <div class="form-group" id="columnSelect">
+            <%= form.label :Column %>
+            <%= form.select(:column, Column.all.collect {|c| [c.id, c.battery_id ]}, {prompt: "none"}, {class: 'form-control'}) %>
+        </div>
+
+        <div class="form-group" id="liftSelect">
+            <%= form.label :Lift %>
+            <%= form.select(:elevator, Elevator.all.collect {|l| [l.id, l.serial_number ]}, {prompt: "lift"}, {class: 'form-control'}) %>
+        </div>
+
+        <div class="form-group" id="employeeSelect">
+            <%= form.label :Employee %>
+            <%= form.select(:employee, Employee.all.collect {|e| [e.first_name + " " + e.last_name, e.id ]}, {prompt: "none"}, {class: 'form-control'}) %>
+        </div>
+
+        <div class="field" style="display: none;">
+            <%= form.label :start_date_and_time_of_the_intervention %>
+            <%= form.text_field :start_date_and_time_of_the_intervention, value:nil %>
+        </div>
+
+        <div class="field" style="display: none;">
+            <%= form.label :end_date_and_time_of_the_intervention %>
+            <%= form.text_field :end_date_and_time_of_the_intervention, value:nil %>
+        </div>
+
+        <div class="field" style="display: none;">
+            <%= form.label :result %>
+            <%= form.text_field :result, value:"Incomplete" %>
+        </div>
+
+        <div class="field">
+            <%= form.label(:report, "Description") %>
+            <%= form.text_area :report, :required => true %>
+        </div>
+
+        <div class="field" style="display: none;">
+            <%= form.label :status %>
+            <%= form.text_field :status, value:"Pending"%>
+        </div>
+
+        <div class="actions">
+            <%= form.submit class: 'col-md-2 btn btn-primary', value:"Submit" %>
+        </div>
     </div>
+
+</div>
 </section>
-<!-- /CONTACT -->
+<% end %>
+
+<%= javascript_include_tag 'intervention' %>
