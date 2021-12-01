@@ -16,7 +16,7 @@
             <%= form.text_field :author, value:current_user.employee.id %>
         </div>
 
-        <div class="form-group">
+        <div class="form-group" id="Client">
             <%= form.label :Client %>
             <%= form.select(:customer, Customer.all.collect {|p| [p.company_name, p.id ]}, {prompt: "Customer"}, {class: 'form-control'}) %>
         </div>

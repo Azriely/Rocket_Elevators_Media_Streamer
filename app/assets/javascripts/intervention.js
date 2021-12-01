@@ -1,4 +1,4 @@
-Document.ready
+
 var build = $("#buildingSelect");
 var batt = $("#batterySelect");
 var col = $("#columnSelect");
@@ -7,29 +7,31 @@ build.hide()
 batt.hide()
 col.hide()
 elev.hide()
-$("#intervention_Building").prop("disabled", true);
-$("#intervention_Client").change(function(){
+
+$("#building").prop("disabled", true);
+$("#customer").change(function(){
     var customer = $(this).val(); //think this is where it's messing up?
-    if(customer == 'Customer'){
-        $("#intervention_Building").prop("disabled", true);
+    if(customer == ""){
+    console.log("This is the Customer" + customer);
+        $("#building").prop("disabled", true);
 		build.hide()
 		batt.hide()
 		col.hide()
 		elev.hide()
-		$("#intervention_Building").empty();
-		$("#intervention_Battery").empty();
-		$("#intervention_Column").empty();
-		$("#intervention_Lift").empty();
+		$("#building").empty();
+		$("#battery").empty();
+		$("#column").empty();
+		$("#elevator").empty();
 
     }else{
-        $("#intervention_Building").prop("disabled", false);
+        $("#building").prop("disabled", false);
 		build.show()
 		batt.hide()
 		col.hide()
 		elev.hide()
-		$("#intervention_Battery").empty();
-		$("#intervention_Column").empty();
-		$("#intervention_Lift").empty();
+		$("#battery").empty();
+		$("#column").empty();
+		$("#elevator").empty();
     }
 	if(customer !== ""){
     $.ajax({
@@ -42,34 +44,34 @@ $("#intervention_Client").change(function(){
 	    success: function (response) {
 	      	console.log(response);
 	      	var tasks = response;
-	      	$("#intervention_Building").empty();
-            $("#intervention_Building").append('<option value="">None</option>');
+	      	$("#building").empty();
+            $("#building").append('<option value="">None</option>');
 	      	for(var i = 0; i < tasks.length; i++){
-	      		$("#intervention_Building").append('<option value="' + tasks[i]["id"] + '">' + tasks[i]["id"] + '</option>');
+	      		$("#building").append('<option value="' + tasks[i]["id"] + '">' + tasks[i]["id"] + '</option>');
                   console.log(tasks.length);
 	      		}
 	    	}
   		});
 	}
 });
-$("#intervention_Battery").prop("disabled", true);
-$("#intervention_Building").change(function(){
+$("#battery").prop("disabled", true);
+$("#building").change(function(){
     var building = $(this).val();
     if(building == ''){
-        $("#intervention_Battery").prop("disabled", true);
+        $("#battery").prop("disabled", true);
 		batt.hide();
 		col.hide();
 		elev.hide();
-		$("#intervention_Battery").empty();
-		$("#intervention_Column").empty();
-		$("#intervention_Lift").empty();
+		$("#battery").empty();
+		$("#column").empty();
+		$("#elevator").empty();
     }else{
-        $("#intervention_Battery").prop("disabled", false);
+        $("#battery").prop("disabled", false);
 		batt.show();
 		col.hide();
 		elev.hide();
-		$("#intervention_Column").empty();
-		$("#intervention_Lift").empty();
+		$("#column").empty();
+		$("#elevator").empty();
     }
 	if(building !== ""){
     $.ajax({
@@ -82,30 +84,30 @@ $("#intervention_Building").change(function(){
 	    success: function (response) {
 	      	console.log(response);
 	      	var tasks = response;
-	      	$("#intervention_Battery").empty();
-            $("#intervention_Battery").append('<option value="">None</option>');
+	      	$("#battery").empty();
+            $("#battery").append('<option value="">None</option>');
 	      	for(var i = 0; i < tasks.length; i++){
-	      		$("#intervention_Battery").append('<option value="' + tasks[i]["id"] + '">' + tasks[i]["id"] + '</option>');
+	      		$("#battery").append('<option value="' + tasks[i]["id"] + '">' + tasks[i]["id"] + '</option>');
                   console.log(tasks.length);
 	      		}
 	    	}
   		});
 	}
 });
-$("#intervention_Column").prop("disabled", true);
-$("#intervention_Battery").change(function(){
+$("#column").prop("disabled", true);
+$("#battery").change(function(){
     var column = $(this).val();
     if(column == ''){
-        $("#intervention_Column").prop("disabled", true);
+        $("#column").prop("disabled", true);
 		col.hide();
 		elev.hide();
-		$("#intervention_Column").empty();
-		$("#intervention_Lift").empty();
+		$("#column").empty();
+		$("#elevator").empty();
     }else{
-        $("#intervention_Column").prop("disabled", false);
+        $("#column").prop("disabled", false);
 		col.show();
 		elev.hide();
-		$("#intervention_Lift").empty();
+		$("#elevator").empty();
     }
 	if(column !== ""){
     $.ajax({
@@ -118,25 +120,25 @@ $("#intervention_Battery").change(function(){
 	    success: function (response) {
 	      	console.log(response);
 	      	var tasks = response;
-	      	$("#intervention_Column").empty();
-            $("#intervention_Column").append('<option value="">None</option>');
+	      	$("#column").empty();
+            $("#column").append('<option value="">None</option>');
 	      	for(var i = 0; i < tasks.length; i++){
-	      		$("#intervention_Column").append('<option value="' + tasks[i]["id"] + '">' + tasks[i]["id"] + '</option>');
+	      		$("#column").append('<option value="' + tasks[i]["id"] + '">' + tasks[i]["id"] + '</option>');
                   console.log(tasks.length);
 	      		}
 	    	}
   		});
 	}
 });
-$("#intervention_Lift").prop("disabled", true);
-$("#intervention_Column").change(function(){
+$("#elevator").prop("disabled", true);
+$("#column").change(function(){
     var elevator = $(this).val();
     if(elevator == ''){
-        $("#intervention_Lift").prop("disabled", true);
+        $("#elevator").prop("disabled", true);
 		elev.hide();
-		$("#intervention_Lift").empty();
+		$("#elevator").empty();
     }else{
-        $("#intervention_Lift").prop("disabled", false);
+        $("#elevator").prop("disabled", false);
 		elev.show();
     }
 	if(elevator !== "None"){
@@ -150,10 +152,10 @@ $("#intervention_Column").change(function(){
 	    success: function (response) {
 	      	console.log(response);
 	      	var tasks = response;
-	      	$("#intervention_Lift").empty();
-            $("#intervention_Lift").append('<option value="">None</option>');
+	      	$("#elevator").empty();
+            $("#elevator").append('<option value="">None</option>');
 	      	for(var i = 0; i < tasks.length; i++){
-	      		$("#intervention_Lift").append('<option value="' + tasks[i]["id"] + '">' + tasks[i]["id"] + '</option>');
+	      		$("#elevator").append('<option value="' + tasks[i]["id"] + '">' + tasks[i]["id"] + '</option>');
                   console.log(tasks.length);
 				  
 	      		}

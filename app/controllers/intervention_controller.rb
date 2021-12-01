@@ -1,4 +1,4 @@
-class InterventionsController < ApplicationController
+class InterventionController < ApplicationController
   before_action :set_intervention, only: %i[ show edit update destroy ]
 
   # KEEP
@@ -61,7 +61,7 @@ class InterventionsController < ApplicationController
   end
   def building_select
     puts "Entered controller"
-    @buildings = Building.where("customer_id = ?", params[:Client])
+    @buildings = Building.where("customer_id = ?", params[:customerID])
     if request.xhr?
         respond_to do |format|
             format.json { render :json => @buildings }
@@ -70,7 +70,7 @@ class InterventionsController < ApplicationController
   end
   def battery_select
     puts "Entered controller"
-    @batteries = Battery.where("building_id = ?", params[:Building])
+    @batteries = Battery.where("building_id = ?", params[:buildingID])
     if request.xhr?
         respond_to do |format|
             format.json { render :json => @batteries }
@@ -79,7 +79,7 @@ class InterventionsController < ApplicationController
   end
   def column_select
     puts "Entered controller"
-    @columns = Column.where("battery_id = ?", params[:Battery])
+    @columns = Column.where("battery_id = ?", params[:batteryID])
     if request.xhr?
         respond_to do |format|
             format.json { render :json => @columns }
@@ -88,7 +88,7 @@ class InterventionsController < ApplicationController
   end
   def elevator_select
     puts "Entered controller"
-    @elevators = Elevator.where("column_id = ?", params[:Column])
+    @elevators = Elevator.where("column_id = ?", params[:columnID])
     if request.xhr?
         respond_to do |format|
             format.json { render :json => @elevators }
