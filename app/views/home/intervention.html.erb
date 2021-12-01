@@ -47,13 +47,13 @@
         </div>
 
         <div class="field" style="display: none;">
-            <%= form.label :start_date_and_time_of_the_intervention %>
-            <%= form.text_field :start_date_and_time_of_the_intervention, value:nil %>
+            <%= form.label :created_at %>
+            <%= form.text_field :created_at, value:nil %>
         </div>
 
         <div class="field" style="display: none;">
-            <%= form.label :end_date_and_time_of_the_intervention %>
-            <%= form.text_field :end_date_and_time_of_the_intervention, value:nil %>
+            <%= form.label :updated_at %>
+            <%= form.text_field :updated_at, value:nil %>
         </div>
 
         <div class="field" style="display: none;">
@@ -61,7 +61,7 @@
             <%= form.text_field :result, value:"Incomplete" %>
         </div>
 
-        <div class="field">
+        <div class="form-group" style="">
             <%= form.label(:report, "Description") %>
             <%= form.text_area :report, :required => true %>
         </div>

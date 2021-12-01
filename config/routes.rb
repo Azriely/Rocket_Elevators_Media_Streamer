@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 get "home/login"
 get "/" => "home#index", :as => "root"
 post "/" , to: "home#create"
+post "/intervention" , to: "intervention#create"
 get "residential" => "home#residential"
 get "commercial" => "home#commercial"
 get "quote" => "home#quote"
