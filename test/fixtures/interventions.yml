@@ -1,7 +1,6 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
   user: one
   customer: one
   building: one
@@ -9,9 +8,13 @@ one:
   column: one
   elevator: one
   employee: one
+  intervention_start: 2021-12-01 16:11:05
+  intervention_end: 2021-12-01 16:11:05
+  result: MyString
+  report: MyText
+  status: MyString
 
 two:
-  name: MyString
   user: two
   customer: two
   building: two
@@ -19,3 +22,8 @@ two:
   column: two
   elevator: two
   employee: two
+  intervention_start: 2021-12-01 16:11:05
+  intervention_end: 2021-12-01 16:11:05
+  result: MyString
+  report: MyText
+  status: MyString

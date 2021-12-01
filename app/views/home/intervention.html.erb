@@ -18,7 +18,7 @@
 
         <div class="form-group" id="Client">
             <%= form.label :Client %>
-            <%= form.select(:customer, Customer.all.collect {|p| [p.company_name, p.id ]}, {prompt: "Customer"}, {class: 'form-control'}) %>
+            <%= form.select(:customer, Customer.all.collect {|p| [p.company_name, p.id.to_i ]}, {prompt: "Customer"}, {class: 'form-control'}) %>
         </div>
 
         <div class="form-group" id="buildingSelect">
