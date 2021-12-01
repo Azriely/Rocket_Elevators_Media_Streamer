@@ -38,9 +38,10 @@ class InterventionController < ApplicationController
       @intervention.result = params[:result] 
       @intervention.report = params[:report]
       @intervention.status = params[:status]
+      @intervention.employee = nil
   
     #   respond_to do |format|
-        if @intervention.save!
+        if @intervention.save
         #   format.html { redirect_to index_url, notice: "Intervention was successfully created." }
         #   format.json { render :show, status: :created, location: @intervention }
         redirect_back fallback_location: root_path
@@ -156,8 +157,8 @@ class InterventionController < ApplicationController
         quote.price_elevator_total = params["priceElevatorTotal"]
            
   
-        if quote.save
-            create_quote_ticket
+        if @intervention.save
+            create_intervention_ticket
             # flash[:success] = "Your Quote has been successfully submitted    "
             
             redirect_to root_path, flash: {success: "Your quote has been successfully submitted"}
@@ -170,7 +171,7 @@ class InterventionController < ApplicationController
     end
   
       # Zendesk for interventions submit
-      def create_quote_ticket
+      def create_intervention_ticket
         client = ZendeskAPI::Client.new do |config|
             config.url = ENV['ZENDESKINT_URL']
             config.username = ENV['ZENDESKINT_USERNAME']
@@ -194,4 +195,4 @@ class InterventionController < ApplicationController
             )
     end
   
-  end
+end
