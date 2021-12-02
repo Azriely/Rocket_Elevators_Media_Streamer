@@ -133,17 +133,18 @@ class InterventionController < ApplicationController
         ZendeskAPI::Ticket.create!(client, 
             :subject => "The user has requested an intervention for customer: #{Customer.find(params[:customer]).company_name} ", 
             :comment => { 
-                :value => "The information for the customer that requires for an intervention is as follows: #{Customer.find(params[:customer]).company_name} 
-                    Building ID is: #{Building.find(params[:building]).id}. 
-                    Column ID is: #{Column.find(params[:column]).id}. 
-                    Elevator ID is: #{Elevator.find(params[:elevator]).id}.
-                    The Employee to be assigned to the case is: #{Employee.find(params[:employee]).first_name + " " + Employee.find(params[:employee]).last_name }.
-                    Request Description: #{params[:report]}.      
-                    "
-                   
+                :value => "The information for the customer that requires an intervention is as follows:
+                    Company name is: #{Customer.find(params[:customer]).company_name}
+                    Building ID is: #{Building.find(params[:building]).id}
+                    Battery ID is: #{Battery.find(params[:battery]).id}
+                    Column ID is: #{Column.find(params[:column]).id}
+                    Elevator ID is: #{Elevator.find(params[:elevator]).id}
+                    The Employee to be assigned to the case is: #{Employee.find(params[:employee]).first_name + " " + Employee.find(params[:employee]).last_name }
+                    Request Description: #{params[:report]}.
+                    "     
             }, 
             :requester => { 
-                "name": User.find(current_user.id).email
+                "name": User.find(current_user.id).email,
                 # "email": User.find(current_user.id).email,
             },
             :priority => "normal",
