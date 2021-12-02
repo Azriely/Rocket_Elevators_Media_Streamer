@@ -42,6 +42,7 @@ class InterventionController < ApplicationController
   
     #   respond_to do |format|
         if @intervention.save
+            create_intervention_ticket
         #   format.html { redirect_to index_url, notice: "Intervention was successfully created." }
         #   format.json { render :show, status: :created, location: @intervention }
         redirect_back fallback_location: root_path
@@ -121,64 +122,16 @@ class InterventionController < ApplicationController
         params.require(:intervention).permit(:author, :customer, :building, :battery, :column, :elevator, :employee, :created_at, :updated_at, :result, :report, :status)
       end
   
-      # Zen Desk Data
-      def getData
-        flash[:success] = ""
-        quote = Quote.new
-  
-        #Customer Info
-        quote.company_name = params['company_name']
-        # quote.last_name = params['last_name']
-        quote.email = params['email']
-        quote.phone_number = params['phone_number']
-   
-        #Building Type
-        quote.building_type = params["buildings"]
-  
-        # Elevator Type
-        quote.services_type = params["radioSelect"]
-        # Building Info
-        quote.apartments = params["num_of_apts"]
-        quote.floors = params["num_of_floors"]
-        quote.basements = params["num_of_basements"]
-        quote.companies = params["num_of_companies"]
-        quote.parking_spots = params["num_of_parking"]
-        quote.elevators = params["num_of_elevators"]
-        quote.corporations = params["num_of_corporations"]
-        quote.maximum_occupancy = params["max_occupancy"]
-        quote.business_hours = params["business_hours"]
-        
-        #Price
-        quote.total_price = params["total_price"].to_s
-        
-        quote.amount_of_elevator = params["amntElevator"]
-        quote.price_per_elevator = params["priceElevator"]
-        quote.installation = params["installation_fee"]
-        quote.price_elevator_total = params["priceElevatorTotal"]
-           
-  
-        if @intervention.save
-            create_intervention_ticket
-            # flash[:success] = "Your Quote has been successfully submitted    "
-            
-            redirect_to root_path, flash: {success: "Your quote has been successfully submitted"}
-         else
-        
-        
-         
-          end
-     
-    end
   
       # Zendesk for interventions submit
-      def create_intervention_ticket
-        client = ZendeskAPI::Client.new do |config|
+        def create_intervention_ticket
+            client = ZendeskAPI::Client.new do |config|
             config.url = ENV['ZENDESKINT_URL']
             config.username = ENV['ZENDESKINT_USERNAME']
             config.token = ENV['ZENDESKINT_TOKEN']
         end
         ZendeskAPI::Ticket.create!(client, 
-            :subject => "The company #{params['company_name']}", 
+            :subject => "Intervention Request From user ID: #{@zendesk_user} ", 
             :comment => { 
                 :value => "The contact company #{params['company_name']} 
                     can be reached at email #{params['email']} and at phone number #{params['phone_number']}. 
@@ -187,12 +140,35 @@ class InterventionController < ApplicationController
                    
             }, 
             :requester => { 
-                "name": params['email'], 
-                "email": params['email'],
+                "name": User.find(current_user.id).email
+                # "email": User.find(current_user.id).email,
             },
             :priority => "normal",
-            :type => "task",
+            :type => "question",
             )
-    end
+                # :value => "The user has requested an intervention with:\nCustomer : " + params[:customer_id] + " - " + (params[:customer_id]).company_name
+                # "\nBuilding Admin : " + params[:building_id] + " - " +  @zendesk_building +
+                # "\nBattery : " + params[:battery_id] + " - " + @zendesk_batteries +
+                # "\nColumn : " + @zendesk_column +
+                # "\nElevator : " + @zendesk_elevators +
+                # "\nEmployee assigned to case: " + @zendesk_employee +
+                # "\nDescription : " + params[:report] 
+            # }, 
+            # :requester => { 
+            #     "name": @zendesk_user,
+            #     "email": @zendesk_user 
+            # },
+            # :priority => "normal",
+            # :type => "question",
+            # )
+        end
+
+    # def get_zendesk_values
+
+    #     @zendesk_user = User.find(current_user.id).email
+    #     @zendesk_building = Building.find(params[:building_id]).admin_name
+    #     @zendesk_customer = Customer.find(params[:customer_id]).company_name
+    #     @zendesk_batteries = Battery.find([params[:battery_id]).status
+
   
 end
