@@ -137,8 +137,8 @@ class InterventionController < ApplicationController
                     Company name is: #{Customer.find(params[:customer]).company_name}
                     Building ID is: #{Building.find(params[:building]).id}
                     Battery ID is: #{Battery.find(params[:battery]).id}
-                    Column ID is: #{Column.find(params[:column]).id}
-                    Elevator ID is: #{Elevator.find(params[:elevator]).id}
+                    Column ID is: #{Column.find(params[:column]).id unless "null"}
+                    Elevator ID is: #{Elevator.find(params[:elevator]).id unless "null"}
                     The Employee to be assigned to the case is: #{Employee.find(params[:employee]).first_name + " " + Employee.find(params[:employee]).last_name }
                     Request Description: #{params[:report]}.
                     "     
