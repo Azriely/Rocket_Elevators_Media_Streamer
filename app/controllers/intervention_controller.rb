@@ -126,17 +126,20 @@ class InterventionController < ApplicationController
       # Zendesk for interventions submit
         def create_intervention_ticket
             client = ZendeskAPI::Client.new do |config|
-            config.url = ENV['ZENDESKINT_URL']
-            config.username = ENV['ZENDESKINT_USERNAME']
-            config.token = ENV['ZENDESKINT_TOKEN']
+            config.url = ENV['ZENDESK_URL']
+            config.username = ENV['ZENDESK_USERNAME']
+            config.token = ENV['ZENDESK_TOKEN']
         end
         ZendeskAPI::Ticket.create!(client, 
-            :subject => "Intervention Request From user ID: #{@zendesk_user} ", 
+            :subject => "The user has requested an intervention for customer: #{Customer.find(params[:customer]).company_name} ", 
             :comment => { 
-                :value => "The contact company #{params['company_name']} 
-                    can be reached at email #{params['email']} and at phone number #{params['phone_number']}. 
-                    Building type selected is #{params["buildings"]} with the service type #{params["radioSelect"]}. 
-                    The amount of required elevator is #{params["amntElevator"]} and total price is #{params["total_price"]}.\n"
+                :value => "The information for the customer that requires for an intervention is as follows: #{Customer.find(params[:customer]).company_name} 
+                    Building ID is: #{Building.find(params[:building]).id}. 
+                    Column ID is: #{Column.find(params[:column]).id}. 
+                    Elevator ID is: #{Elevator.find(params[:elevator]).id}.
+                    The Employee to be assigned to the case is: #{Employee.find(params[:employee]).first_name + " " + Employee.find(params[:employee]).last_name }.
+                    Request Description: #{params[:report]}.      
+                    "
                    
             }, 
             :requester => { 
