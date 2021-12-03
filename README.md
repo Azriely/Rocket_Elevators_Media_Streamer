@@ -1,10 +1,10 @@
 # README
 
 ## Project Description
-This week our task is to implement various APIs to add more features to our Rocket Elevator website.
+This is the completed Foundations project for Rocket elevators. Included is a custom Ruby on Rails web application.
 
 #### Instructional Video
-This video gives a brief explanation of the process for using various APIs on our website.
+This video gives an overview of this weeks specific requirements that have been added to the project.
 Link: <em>https://youtu.be/GwItoYtCmFQ</em>
 
 ### Back Office Admin Logins
