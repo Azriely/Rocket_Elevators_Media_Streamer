@@ -1,7 +1,7 @@
 # README
 
 ## Project Description
-This is the completed Foundations project for Rocket elevators. Included is a custom Ruby on Rails web application.
+This is the completed Foundations project for Rocket elevators. Included is a custom Ruby on Rails web application. (Please see links to custom API's (GraphQL bonus objectives comeplete for this week))
 
 #### Instructional Video
 This video gives an overview of this weeks specific requirements that have been added to the project.
