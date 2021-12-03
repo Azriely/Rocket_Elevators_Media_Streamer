@@ -1,3 +1,4 @@
+<% if user_signed_in? %>
 <%= form_with(model: @intervention, local: true) do |form| %>
 
 <section id="intervention">
@@ -78,6 +79,9 @@
 
 </div>
 </section>
+<% end %>
+<% else %>
+<script>window.location.href="/users/sign_in"</script>
 <% end %>
 
 <%= javascript_include_tag 'intervention' %>
