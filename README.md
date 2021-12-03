@@ -57,4 +57,4 @@ Custom API's created for the project (instructions for working with the custom A
 
 
 ### Ruby / Rails version
-We used Ruby 2.6.6 and Ruby on Rails 5.2.6
+Used Ruby 2.6.6 and Ruby on Rails 5.2.6
