@@ -53,7 +53,7 @@ You can now see the website at a web browser at localhost:3000
 Custom API's created for the project (instructions for working with the custom API's are in the readme of each API repository)
 
 - REST API - <em>https://github.com/Azriely/Rocket_Elevators_REST_API</em>
-- GraphQL API - <em>https://github.com/Azriely/Rocket_Elevators_GraphQL</em>
+- GraphQL API - <em>https://github.com/Azriely/Rocket_Elevators_GraphQL</em> (complete bonus objectives)
 
 
 ### Ruby / Rails version
