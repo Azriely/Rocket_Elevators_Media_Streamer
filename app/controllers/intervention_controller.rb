@@ -1,5 +1,10 @@
 class InterventionController < ApplicationController
     before_action :set_intervention, only: %i[ show edit update destroy ]
+
+    def interventionData
+      render json: "hello world"
+      
+    end
   
     # KEEP
     def index

@@ -17,6 +17,7 @@ gem 'sendgrid-actionmailer'
 gem 'slack-notifier'
 gem 'starwars'
 gem 'rspec', '~> 3.10'
+gem 'open-weather'
 ## -- API Section -- ##
 # Figaro API protection
 gem 'figaro'
