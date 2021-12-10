@@ -1,60 +1,27 @@
 # README
 
-## Project Description
-This is the completed Foundations project for Rocket elevators. Included is a custom Ruby on Rails web application. (Please see links to custom API's (GraphQL bonus objectives comeplete for this week))
+ Rocket_Elevators_Media_Streamer
 
-#### Instructional Video
-This video gives an overview of this weeks specific requirements that have been added to the project.
-Link: <em>https://youtu.be/GwItoYtCmFQ</em>
+- About Week 10 - The marketing department at Rocket Elevators has long been waiting for the opportunity to do media content placement in the company's elevators. To meet their needs, we implement a content delivery module.
 
-### Back Office Admin Logins
-Nicolas Genest | CEO | nicolas.genest@codeboxx.biz | password: password
+- This module:
 
-Nadya Fortier | Director | nadya.fortier@codeboxx.biz | password: password
+Reusable library. (in the 'lib' directory of your information system.)
+The TDD is made by using RSpec ( http://rspec.info )
+All the content available and accessible via the getContent method.
 
-Martin Chantal | Director Assistant | martin.chantal@codeboxx.biz | password: password
+- Media source:
 
-Mathieu Houde | Captain | mathieu.houde@codeboxx.biz | password: password
+Open Weather API: https://openweathermap.org/api
 
-Abdul Akeeb | Developer | abdul.akeeb@codeboxx.biz | password: password
+- For testing:
 
-Timothy Wever | Developer | timothy.wever@codeboxx.biz | password: password
+Streamer:
 
-Krista Sheely | Developer | krista.sheely@codeboxx.biz | password: password 
+File : ./spec/lib/streamer_spec.rb
+Test command: rspec ./spec/lib/streamer_spec.rb
 
+Unit tests (3 tests):
 
-### Instructions
-
-Open your ubuntu terminal and run this command to install the dependencies:
-
-```bundle install```
-
-Third, run this command to set up your databases:
-
-```rails db:setup```
-
-Finally, run this command:
-
-```rails server ```
-
-You can now see the website at a web browser at localhost:3000
-
-
-### API's implemented:
-
-- Google Maps: Used gem ``` gem 'geocoder' ``` m to convert the addresses to latitude and longitude
-- Twilio: Used gem ``` 'gem 'twilio-ruby', '~> 5.61.0' ``` to integrate twilio to our apps
-- Slack: Used gem ``` gem 'slack-notifier' ``` to integrate slack to our apps
-- Dropbox: Used gem ``` gem 'dropbox_api' ``` to integrate slack to our apps
-- SendGrid: Used gem ``` gem 'sendgrid-ruby' ``` and ``` gem 'sendgrid-actionmailer' ```  to integrate Sendgrid to our apps
-- Amazon Polly: Used gem ``` gem 'aws-sdk-polly' ``` to integrate Amazon Polly to our apps
-- Zendesk: Used gem ``` gem "zendesk_api" ``` to integrate slack to our apps
-
-Custom API's created for the project (instructions for working with the custom API's are in the readme of each API repository)
-
-- REST API - <em>https://github.com/Azriely/Rocket_Elevators_REST_API</em>
-- GraphQL API - <em>https://github.com/Azriely/Rocket_Elevators_GraphQL</em> (complete bonus objectives)
-
-
-### Ruby / Rails version
-Used Ruby 2.6.6 and Ruby on Rails 5.2.6
+File: ./spec/interventions_controller_spec.rb
+Test command: rspec ./spec/interventions_controller_spec.rb
