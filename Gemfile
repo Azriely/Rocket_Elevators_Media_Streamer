@@ -18,6 +18,7 @@ gem 'slack-notifier'
 gem 'starwars'
 gem 'rspec', '~> 3.10'
 gem 'open-weather'
+gem 'active_model_otp'
 ## -- API Section -- ##
 # Figaro API protection
 gem 'figaro'

@@ -62,45 +62,45 @@ class Devise::SessionsController < DeviseController
 
 
     end
-    # @date = Time.now
-    # user_email_before_split = params[:user][:email].split("@")
-    # user_email = user_email_before_split[0]
-    # polly = Aws::Polly::Client.new(access_key_id: ENV['AWS_ACCESS_KEY_ID'],secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'],region: 'us-west-1')
-    # resp = polly.synthesize_speech({
-    # output_format: "mp3",
-    # text: '<speak>
+    @date = Time.now
+    user_email_before_split = params[:user][:email].split("@")
+    user_email = user_email_before_split[0]
+    polly = Aws::Polly::Client.new(access_key_id: ENV['AWS_ACCESS_KEY_ID'],secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'],region: 'us-west-1')
+    resp = polly.synthesize_speech({
+    output_format: "mp3",
+    text: '<speak>
     
-    #           Hi  '+ user_email + '<break time="0.5s"/>  Welcome Back.
-    #           <break time="1s"/> 
-    #           As of today,' + @date.strftime("%d %b, %Y").to_s + '
-    #           ,
-    #           There are currently , ' +elevator_deployed.to_s + '
-    #           elevators deployed in the, ' + number_of_building.to_s + '
-    #           buildings of your  ' + custy.length().to_s + 'customers
-    #           <break time="1s"/> 
-    #           Currently, ' + inactive_elevator.length().to_s + ' elevators are not in Running Status and are being serviced
-    #           <break time="1s"/> 
-    #           You currently have ,' + quotes_await_processing.to_s + '  quotes awaiting processing
-    #           <break time="0.5s"/> 
-    #           and You currently have, ' + leads_in_contacts.to_s+ ' leads in your contact requests
-    #           <break time="1s"/> 
-    #           And last thing,' + number_of_batteries.to_s + ' Batteries are deployed across ' + city.length().to_s + ' cities
-    #           <break time="0.5s"/> 
-    #           Hope you enjoy yourday.
-    #           </speak>',
-    # text_type: "ssml", 
-    # voice_id: "Joanna",
-    # })
-    # name = File.basename('speech')
+              Hi  '+ user_email + '<break time="0.5s"/>  Welcome Back.
+              <break time="1s"/> 
+              As of today,' + @date.strftime("%d %b, %Y").to_s + '
+              ,
+              There are currently , ' +elevator_deployed.to_s + '
+              elevators deployed in the, ' + number_of_building.to_s + '
+              buildings of your  ' + custy.length().to_s + 'customers
+              <break time="1s"/> 
+              Currently, ' + inactive_elevator.length().to_s + ' elevators are not in Running Status and are being serviced
+              <break time="1s"/> 
+              You currently have ,' + quotes_await_processing.to_s + '  quotes awaiting processing
+              <break time="0.5s"/> 
+              and You currently have, ' + leads_in_contacts.to_s+ ' leads in your contact requests
+              <break time="1s"/> 
+              And last thing,' + number_of_batteries.to_s + ' Batteries are deployed across ' + city.length().to_s + ' cities
+              <break time="0.5s"/> 
+              Hope you enjoy yourday.
+              </speak>',
+    text_type: "ssml", 
+    voice_id: "Joanna",
+    })
+    name = File.basename('speech')
 
-    # # Split up name so we get just the xyz part
-    # parts = name.split('.')
-    # first_part = parts[0]
-    # mp3_file = first_part + '.mp3'
+    # Split up name so we get just the xyz part
+    parts = name.split('.')
+    first_part = parts[0]
+    mp3_file = first_part + '.mp3'
     
-    # IO.copy_stream(resp.audio_stream, 'app/assets/audios/' + mp3_file)
+    IO.copy_stream(resp.audio_stream, 'app/assets/audios/' + mp3_file)
 
-    # puts 'Wrote MP3 content to: ' + mp3_file
+    puts 'Wrote MP3 content to: ' + mp3_file
   end
 
   # DELETE /resource/sign_out
