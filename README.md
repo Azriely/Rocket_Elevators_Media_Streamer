@@ -1,6 +1,6 @@
 # README
 
- Rocket_Elevators_Media_Streamer
+ Rocket Elevators Media Streamer
 
 About Week 10 - The marketing department at Rocket Elevators has long been waiting for the opportunity to do media content placement in the company's elevators. To meet their needs, we implement a content delivery module.
 
